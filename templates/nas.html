@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP Accounting Solution</title>
+</head>
+<body>
+    <div id="btn">
+        <button id="start-btn">Record</button>
+    </div>
+    <br>
+    <!-- <div class="words" contenteditable>
+        <p id="p"></p>
+    </div> -->
+    
+    <div class="words" contenteditable>
+        <form action="" method="POST">
+            <textarea name="data" id="trans" cols="30" rows="3"></textarea>
+            <br>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    <div>
+        <h1>Business Value: {{ Business_value }}</h1>
+        <h3>Total Income: {{ Income }}</h3>
+        <h3>Total Expense: {{ Expense }}</h3>
+    </div>
+    
+
+</body>
+<script>
+var speech = true;
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+
+const recognition = new SpeechRecognition();
+
+recognition.interimResults = true;
+
+// const words = document.querySelector('.words');
+
+// words.appendChild(trans);
+
+recognition.addEventListener('result', e => {
+    const transcript = Array.from(e.results)
+    .map(result => result[0])
+    .map(result => result.transcript)
+    .join('')
+
+    // document.getElementById("p").innerHTML = transcript;
+    document.getElementById("trans").innerHTML = transcript;
+
+});
+
+document.querySelector("#start-btn").addEventListener('click', function(){
+    if(speech = true){
+        recognition.start()
+        // recognition.addEventListener('end', recognition.start)
+    };
+
+});
+
+// if(speech = true){
+//         recognition.start()
+//         // recognition.addEventListener('end', recognition.start)
+// };
+
+</script>
+</html>
